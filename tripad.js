@@ -1,4 +1,8 @@
 var menu = document.getElementById("menu");
+var header = document.getElementById("headers");
+var images = menu.getElementsByTagName("p");
+
+console.log(images);
 
 function slideleft(){
 	menu.scrollLeft -= 400;
@@ -10,19 +14,22 @@ function slideright(){
     // menu.animate({scrollLeft: '0'}, scrollDuration);
 };
 
-// function getUserById(id) {
-//     if (typeof id !== 'number' || id <= 0) {
-//         throw new Error('Invalid id argument');
-//     }
+const url = "https://jsonplaceholder.typicode.com/users";
 
-//     return new Promise((resolve, reject) => {
-//         resolve({
-//             id: id,
-//             username: 'admin'
-//         });
-//     });
-// }
+async function fn(){
+    const {data} = await axios.get(url).then((response) => {
+        return response;
+    }).catch((error) =>{
+        console.log('error in the api: ', error);
+    });
 
-// getUserById(1)
-//     .then(user => console.log(user.username))
-//     .catch(err => console.log(err));
+    names = data.map(function(element){
+        return element.name;
+    });
+
+    Array.from(images).forEach(function(element, index){
+        images[index].innerHTML = names[index];
+    });
+}
+
+fn();
