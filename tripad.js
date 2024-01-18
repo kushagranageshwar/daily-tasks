@@ -16,20 +16,17 @@ function slideright(){
 
 const url = "https://jsonplaceholder.typicode.com/users";
 
-async function fn(){
+async function fetchData(){
     const {data} = await axios.get(url).then((response) => {
+        console.log(response);
         return response;
     }).catch((error) =>{
         console.log('error in the api: ', error);
     });
 
-    names = data.map(function(element){
-        return element.name;
-    });
-
     Array.from(images).forEach(function(element, index){
-        images[index].innerHTML = names[index];
+        images[index].innerHTML = data[index].name;
     });
 }
 
-fn();
+fetchData();
