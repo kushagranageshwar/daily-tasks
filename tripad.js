@@ -6,12 +6,10 @@ var paragraphElements = menu.getElementsByTagName("p");
 
 function slideleft(){
 	menu.scrollLeft -= 400;
-    // menu.animate({scrollLeft: '0'}, scrollDuration);
 };
 
 function slideright(){
 	menu.scrollLeft += 400;
-    // menu.animate({scrollLeft: '0'}, scrollDuration);
 };
 
 const url = "https://jsonplaceholder.typicode.com/users";
@@ -25,14 +23,6 @@ async function fetchData(){
     });
 
     console.log(data);
-
-    // data.forEach((item, index) => {
-    //     const {name} = item;
-    //     // const paraelement = document.getElementsByTagName('p');
-    //     // console.log(paraelement);
-    //     // paraelement.textContent = `${name}`;
-    //     paragraphElements[index].innerHTML = name;
-    // })
 
     Array.from(paragraphElements).forEach(function(element, index){
         paragraphElements[index].innerHTML = data[index].name;
